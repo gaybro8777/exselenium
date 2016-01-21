@@ -10,6 +10,13 @@ defmodule Selenium.Session do
     end
   end
 
+  # Get all the selenium sessions, useful for termination
+  def get_all() do
+    Agent.get __MODULE__, fn(state) ->
+      state
+    end
+  end
+
   # Creates a new session given an identifier, the browser type, and
   # any extra capabilities.
   def create(identifier, browser, additional_capabilities \\ %{}) do
@@ -28,7 +35,7 @@ defmodule Selenium.Session do
     end
 
     # Send the request to make a new session
-    session_id = case Request.post("session", params) do
+    session_id = case Request.post("session", params, [recv_timeout: :infinity]) do
       {:error, %HTTPoison.Error{id: nil, reason: :econnrefused}} -> raise "Could not connect to selenium server"
       {:ok, %HTTPoison.Response{body: %{ "sessionId" => session_id }} } -> session_id
     end
@@ -48,11 +55,12 @@ defmodule Selenium.Session do
     session_id = get(identifier)
 
     # Send a delete to the session to clean it up
-    Request.delete("session/#{session_id}")
+    Request.delete("session/#{session_id}", [recv_timeout: :infinity])
 
     # Remove the identifier from the state
     Agent.get_and_update __MODULE__, fn(state) ->
       { Map.fetch(state, identifier), Map.delete(state, identifier)}
     end
   end
+
 end

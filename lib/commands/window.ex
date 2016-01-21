@@ -7,7 +7,7 @@ defmodule Selenium.Window do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/window_handles")
+                              status_code: _}} = Request.get("session/#{session_id}/window_handles", [recv_timeout: :infinity])
 
     body["value"]
   end
@@ -17,7 +17,7 @@ defmodule Selenium.Window do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/window_handle")
+                              status_code: _}} = Request.get("session/#{session_id}/window_handle", [recv_timeout: :infinity])
     body["value"]
   end
 
@@ -26,7 +26,7 @@ defmodule Selenium.Window do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: _,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/window/#{handle}/maximize", "")
+                              status_code: _}} = Request.post("session/#{session_id}/window/#{handle}/maximize", "", [recv_timeout: :infinity])
     :ok
   end
 
@@ -35,7 +35,7 @@ defmodule Selenium.Window do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/window/#{handle}/size")
+                              status_code: _}} = Request.get("session/#{session_id}/window/#{handle}/size", [recv_timeout: :infinity])
     %{ "width" => body["value"]["width"], "height" => body["value"]["height"] }
   end
 
@@ -44,7 +44,7 @@ defmodule Selenium.Window do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: _,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/window/#{handle}/size", %{ "width" => width, "height" => height })
+                              status_code: _}} = Request.post("session/#{session_id}/window/#{handle}/size", %{ "width" => width, "height" => height }, [recv_timeout: :infinity])
 
     :ok
   end
