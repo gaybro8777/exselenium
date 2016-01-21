@@ -1,9 +1,10 @@
-defmodule Selenium.Javascript do
+defmodule Selenium.Commands.Javascript do
   alias Selenium.Session
+  alias Selenium.Request
 
   defp transform(script) do
     # Transform the function so they don't have to reference variables with "arguments"
-    function = "return (#{script}).apply(null, arguments);"
+    "return (#{script}).apply(null, arguments);"
   end
 
   # Executes javascript and returns a value

@@ -1,4 +1,7 @@
 defmodule Selenium.Session do
+  alias Selenium.Request
+  alias Selenium.Capabilities
+
   def start_link(state \\ [], opts \\ []) do
     Agent.start_link fn -> %{} end, name: __MODULE__
   end

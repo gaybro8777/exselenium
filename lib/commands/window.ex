@@ -1,6 +1,7 @@
-defmodule Selenium.Window do
+defmodule Selenium.Commands.Window do
 
   alias Selenium.Session
+  alias Selenium.Request
 
   # Get all the window handles
   def all(identifier) do

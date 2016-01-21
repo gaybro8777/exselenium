@@ -1,4 +1,4 @@
-defmodule Request do
+defmodule Selenium.Request do
 
   # Module to handle HTTP requests in a uniform fashion
   use HTTPoison.Base

@@ -1,7 +1,7 @@
 defmodule NavigateTest do
   use ExUnit.Case
   alias Selenium.Session
-  alias Selenium.Navigate
+  alias Selenium.Commands.Navigate
 
   doctest Navigate
 

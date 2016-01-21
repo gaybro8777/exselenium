@@ -1,7 +1,7 @@
 defmodule WindowTest do
   use ExUnit.Case
   alias Selenium.Session
-  alias Selenium.Window
+  alias Selenium.Commands.Window
 
   doctest Window
 

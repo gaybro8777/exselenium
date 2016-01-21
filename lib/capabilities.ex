@@ -1,4 +1,4 @@
-defmodule Capabilities do
+defmodule Selenium.Capabilities do
   defstruct [
     javascriptEnabled: false,
     version: "",

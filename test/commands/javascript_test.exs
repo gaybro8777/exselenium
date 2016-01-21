@@ -1,9 +1,9 @@
-defmodule NavigateTest do
+defmodule JavascriptTest do
   use ExUnit.Case
 
   alias Selenium.Session
-  alias Selenium.Navigate
-  alias Selenium.Javascript
+  alias Selenium.Commands.Navigate
+  alias Selenium.Commands.Javascript
 
   doctest Javascript
 

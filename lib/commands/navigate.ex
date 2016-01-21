@@ -1,6 +1,7 @@
-defmodule Selenium.Navigate do
+defmodule Selenium.Commands.Navigate do
 
   alias Selenium.Session
+  alias Selenium.Request
 
   # Get the current URL for a session
   def current(identifier) do
