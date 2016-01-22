@@ -22,4 +22,24 @@ defmodule Selenium.Commands.Page do
     body["value"]
   end
 
+  # Get the orientation of the browser
+  def orientation(identifier) do
+    session_id = Session.get(identifier)
+
+    {:ok, %HTTPoison.Response{body: body,
+                              headers: _,
+                              status_code: _}} = Request.get("session/#{session_id}/orientation", [recv_timeout: :infinity])
+    body["value"]
+  end
+
+  # Set the screen orientation
+  def orientation(identifier, orientation) do
+    session_id = Session.get(identifier)
+
+    {:ok, %HTTPoison.Response{body: body,
+                              headers: _,
+                              status_code: _}} = Request.post("session/#{session_id}/orientation", %{"orientation" => orientation}, [recv_timeout: :infinity])
+    body["value"]
+  end
+
 end
