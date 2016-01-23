@@ -8,7 +8,7 @@ defmodule Selenium.Commands.Javascript do
   end
 
   # Executes javascript and returns a value
-  def execute(identifier, function, args) do
+  def execute(identifier, function, args \\ []) do
     session_id = Session.get(identifier)
 
     # Turn the function into an actual function
@@ -21,7 +21,7 @@ defmodule Selenium.Commands.Javascript do
   end
 
   # Executes javascript asyncronously, does not wait for return
-  def execute_async(identifier, function, args) do
+  def execute_async(identifier, function, args \\ []) do
     session_id = Session.get(identifier)
 
     # Turn the function into an actual function
