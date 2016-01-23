@@ -390,7 +390,7 @@ defmodule ElementTest do
 
     # Email should be in the top right
     result = Element.find_one(session_name, "id", "email") |> Element.location(session_name)
-    assert result == %{"x" => 652, "y" => 33}
+    assert result == %Selenium.Position{x: 652, y: 33}
 
     # Close the window
     Session.destroy(session_name)

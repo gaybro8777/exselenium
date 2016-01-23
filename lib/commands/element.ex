@@ -1,6 +1,7 @@
 defmodule Selenium.Commands.Element do
   alias Selenium.Session
   alias Selenium.Request
+  alias Selenium.Position
 
   # Map all the strategies
   @strategies %{ "class" => "class name", "css" => "css selector", "id" => "id", "name" => "name", "link" => "link text", "partial link" => "partial link text", "tag" => "tag name", "xpath" => "xpath" }
@@ -242,7 +243,7 @@ defmodule Selenium.Commands.Element do
                               headers: _,
                               status_code: _}} = Request.get("session/#{session_id}/element/#{id}/location", [recv_timeout: :infinity])
 
-    %{ "x" => body["value"]["x"], "y" => body["value"]["y"] }
+    %Position{ x: body["value"]["x"], y: body["value"]["y"] }
   end
 
   # Get the size of an element
