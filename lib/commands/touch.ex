@@ -94,7 +94,7 @@ defmodule Selenium.Commands.Touch do
   end
 
   # Flick gesture in x and y speed if you don't care which element to start at
-  def flick(identifier, xpseed, yspeed) do
+  def flick(identifier, xspeed, yspeed) do
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
