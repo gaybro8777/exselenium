@@ -3,7 +3,7 @@ defmodule Selenium.Capabilities do
     javascriptEnabled: false,
     version: "",
     rotatable: false,
-    takesScreenshot: true,
+    takeScreenshot: true,
     cssSelectorsEnabled: true,
     browserName: "firefox",
     nativeEvents: false,
