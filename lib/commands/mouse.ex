@@ -7,7 +7,6 @@ defmodule Selenium.Commands.Mouse do
   # Moves the mouse to a new %Selenium.Position{}, can be relative to another
   # element or relative to the current mouse position
   def move_to(identifier, position, element \\ nil) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -20,7 +19,6 @@ defmodule Selenium.Commands.Mouse do
   # mouse button
   # left, middle, or right
   def click(identifier, button) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -31,7 +29,6 @@ defmodule Selenium.Commands.Mouse do
 
   # Holds the given mouse button down until button up is called
   def button_down(identifier, button) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -42,7 +39,6 @@ defmodule Selenium.Commands.Mouse do
 
   # Releases the button that was previously down
   def button_up(identifier, button) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -53,7 +49,6 @@ defmodule Selenium.Commands.Mouse do
 
   # Double clicks
   def double_click(identifier, button) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,

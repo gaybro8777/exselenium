@@ -8,7 +8,6 @@ defmodule Selenium.Commands.Element do
 
   # Find a single element based on a strategy and selector
   def find_one(identifier, strategy, selector) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     # Get the mapped strategy value
@@ -25,7 +24,6 @@ defmodule Selenium.Commands.Element do
 
   # Find all elements with selector
   def find_all(identifier, strategy, selector) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     # Get the mapped strategy value
@@ -45,7 +43,6 @@ defmodule Selenium.Commands.Element do
 
   # Find the active element
   def get_active(identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -57,7 +54,6 @@ defmodule Selenium.Commands.Element do
 
   # Find a single element based on a strategy and selector
   def find_within(id, identifier, strategy, selector) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     # Get the mapped strategy value
@@ -74,7 +70,6 @@ defmodule Selenium.Commands.Element do
 
   # Find multiple elements based on a strategy and selector
   def find_multiple_within(id, identifier, strategy, selector) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     # Get the mapped strategy value
@@ -93,7 +88,6 @@ defmodule Selenium.Commands.Element do
 
   # Click on an element
   def click(id, identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -105,7 +99,6 @@ defmodule Selenium.Commands.Element do
 
   # Submit an element
   def submit(id, identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -117,7 +110,6 @@ defmodule Selenium.Commands.Element do
 
   # Get the text of an element
   def text(id, identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -129,7 +121,6 @@ defmodule Selenium.Commands.Element do
 
   # Get the attribute of an element
   def attribute(id, identifier, attribute) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -152,7 +143,7 @@ defmodule Selenium.Commands.Element do
 
   # Set the value of an element
   def set_value(id, identifier, value) do
-    HTTPoison.start()
+
     # Value needs to be an array of characters
     value = String.split value, ~r//, trim: true
 
@@ -166,7 +157,7 @@ defmodule Selenium.Commands.Element do
 
   # Trigger key presses in the active element
   def keys(identifier, value) do
-    HTTPoison.start()
+
     # Value needs to be an array of characters
     value = String.split value, ~r//, trim: true
 
@@ -180,7 +171,6 @@ defmodule Selenium.Commands.Element do
 
   # Get an element's tag name
   def tag_name(id, identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -192,7 +182,7 @@ defmodule Selenium.Commands.Element do
 
   # Set the value of an element
   def clear(id, identifier) do
-    HTTPoison.start()
+
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
@@ -203,7 +193,6 @@ defmodule Selenium.Commands.Element do
 
   # Tell if an element is selected
   def selected(id, identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -215,7 +204,6 @@ defmodule Selenium.Commands.Element do
 
   # Is an element enabled
   def enabled(id, identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -227,7 +215,6 @@ defmodule Selenium.Commands.Element do
 
   # Are the two elements equal
   def equal(id, identifier, other_id) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -239,7 +226,6 @@ defmodule Selenium.Commands.Element do
 
   # Is an element displayed on the page?
   def displayed(id, identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -251,7 +237,6 @@ defmodule Selenium.Commands.Element do
 
   # Get the location of an element
   def location(id, identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -263,7 +248,6 @@ defmodule Selenium.Commands.Element do
 
   # Get the size of an element
   def size(id, identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -275,7 +259,6 @@ defmodule Selenium.Commands.Element do
 
   # Get the size of an element
   def css(id, identifier, property) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,

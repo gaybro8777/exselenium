@@ -5,7 +5,6 @@ defmodule Selenium.Commands.Alert do
 
   # Gets the text of an alert/promt/confirm dialog
   def text(identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
@@ -15,7 +14,6 @@ defmodule Selenium.Commands.Alert do
 
   # Sends keystrokes to a prompt dialog
   def text(identifier, text) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
@@ -25,7 +23,6 @@ defmodule Selenium.Commands.Alert do
 
   # Accepts an alert dialog
   def accept(identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
@@ -35,7 +32,6 @@ defmodule Selenium.Commands.Alert do
 
   # Dismisses an alert dialog
   def dismiss(identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,

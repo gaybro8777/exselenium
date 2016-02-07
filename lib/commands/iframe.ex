@@ -4,7 +4,6 @@ defmodule Selenium.Commands.Iframe do
 
   # Change focus to an iframe
   def focus(identifier, id) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -15,7 +14,6 @@ defmodule Selenium.Commands.Iframe do
 
   # Change focus to the parent frame
   def parent(identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,

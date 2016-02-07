@@ -4,7 +4,6 @@ defmodule Selenium.Commands.Touch do
 
   # Taps on an element (id)
   def tap(identifier, element) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -15,7 +14,6 @@ defmodule Selenium.Commands.Touch do
 
   # Holds the tap event at an x/y position
   def hold(identifier, position) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -26,7 +24,6 @@ defmodule Selenium.Commands.Touch do
 
   # Releases the long press
   def release(identifier, position) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -37,7 +34,6 @@ defmodule Selenium.Commands.Touch do
 
   # Moves finger to a new location, useful for drag events
   def move(identifier, position) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -48,7 +44,6 @@ defmodule Selenium.Commands.Touch do
 
   # Starts touch scroll from an element
   def scroll(identifier, position, element) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -59,7 +54,6 @@ defmodule Selenium.Commands.Touch do
 
   # Starts scroll from current position
   def scroll(identifier, position) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -70,7 +64,6 @@ defmodule Selenium.Commands.Touch do
 
   # Double taps an element
   def double_tap(identifier, element) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -81,7 +74,6 @@ defmodule Selenium.Commands.Touch do
 
   # Long presses an element
   def long_press(identifier, element) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -93,7 +85,6 @@ defmodule Selenium.Commands.Touch do
   # Flick gesture starting at element and going to another location.
   # Speed is in pixels per second
   def flick(identifier, position, speed, element) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -104,7 +95,6 @@ defmodule Selenium.Commands.Touch do
 
   # Flick gesture in x and y speed if you don't care which element to start at
   def flick(identifier, xspeed, yspeed) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,

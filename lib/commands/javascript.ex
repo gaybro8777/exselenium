@@ -9,7 +9,6 @@ defmodule Selenium.Commands.Javascript do
 
   # Executes javascript and returns a value
   def execute(identifier, function, args \\ []) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     # Turn the function into an actual function
@@ -23,7 +22,6 @@ defmodule Selenium.Commands.Javascript do
 
   # Executes javascript asyncronously, does not wait for return
   def execute_async(identifier, function, args \\ []) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     # Turn the function into an actual function
@@ -37,7 +35,6 @@ defmodule Selenium.Commands.Javascript do
 
   # Sets the amount of time we'll wait for an async script to return, in ms
   def async_wait(identifier, time) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,

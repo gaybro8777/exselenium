@@ -15,7 +15,6 @@ defmodule Selenium.Commands.Screenshot do
 
   # Returns the raw response of the screenshot request
   def take(identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,

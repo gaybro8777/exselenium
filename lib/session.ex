@@ -24,7 +24,6 @@ defmodule Selenium.Session do
   # any extra capabilities.
   def create(identifier, browser, additional_capabilities \\ %{}) do
 
-    HTTPoison.start()
     capabilities = %Capabilities{
       browserName: browser
     }

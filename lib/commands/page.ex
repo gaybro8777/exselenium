@@ -4,7 +4,6 @@ defmodule Selenium.Commands.Page do
 
   # Get the page source
   def source(identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -15,7 +14,6 @@ defmodule Selenium.Commands.Page do
 
   # Get the page title
   def title(identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -26,7 +24,6 @@ defmodule Selenium.Commands.Page do
 
   # Get the orientation of the browser
   def orientation(identifier) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -37,7 +34,6 @@ defmodule Selenium.Commands.Page do
 
   # Set the screen orientation
   def orientation(identifier, orientation) do
-    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
