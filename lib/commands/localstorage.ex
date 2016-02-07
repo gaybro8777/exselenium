@@ -5,6 +5,7 @@ defmodule Selenium.Commands.LocalStorage do
 
   # Get the entire local storage
   def all(identifier) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
@@ -14,6 +15,7 @@ defmodule Selenium.Commands.LocalStorage do
 
   # Get a single local storage element by key
   def get(identifier, key) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
@@ -23,6 +25,7 @@ defmodule Selenium.Commands.LocalStorage do
 
   # Delete a local storage item by key
   def remove_item(identifier, key) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
@@ -32,6 +35,7 @@ defmodule Selenium.Commands.LocalStorage do
 
   # Set a new local storage variable
   def set(identifier, key, value) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
@@ -41,6 +45,7 @@ defmodule Selenium.Commands.LocalStorage do
 
   # Clear the local storage object
   def clear(identifier) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
@@ -50,6 +55,7 @@ defmodule Selenium.Commands.LocalStorage do
 
   # Get the local storage size
   def size(identifier) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,

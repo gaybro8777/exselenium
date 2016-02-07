@@ -9,7 +9,7 @@ defmodule Selenium do
     ]
 
     # Register a sytem exit function to cleanup
-    System.at_exit fn(status_code) ->
+    System.at_exit fn(_) ->
 
       # Close down all the sessions
       sessions = Selenium.Session.get_all()

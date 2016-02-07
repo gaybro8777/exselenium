@@ -5,6 +5,7 @@ defmodule Selenium.Commands.Navigate do
 
   # Get the current URL for a session
   def current(identifier) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
@@ -14,6 +15,7 @@ defmodule Selenium.Commands.Navigate do
 
   # Navigate to another url
   def to(identifier, url) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
@@ -22,6 +24,7 @@ defmodule Selenium.Commands.Navigate do
   end
 
   def forward(identifier) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
@@ -30,6 +33,7 @@ defmodule Selenium.Commands.Navigate do
   end
 
   def back(identifier) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
@@ -38,6 +42,7 @@ defmodule Selenium.Commands.Navigate do
   end
 
   def refresh(identifier) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,

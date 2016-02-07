@@ -15,6 +15,7 @@ defmodule Selenium.Commands.Cookie do
 
   # Get all the cookies on a page
   def all(identifier) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -45,6 +46,7 @@ defmodule Selenium.Commands.Cookie do
 
   # Set a cookie to a value, use %Cookie{} for this
   def set(identifier, cookie) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
 
     # Filter out the nil values from our struct
@@ -58,6 +60,7 @@ defmodule Selenium.Commands.Cookie do
 
   # Delete all the cookies
   def delete_all(identifier) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,
@@ -68,6 +71,7 @@ defmodule Selenium.Commands.Cookie do
 
   # Delete a cookie by name
   def delete(identifier, name) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
 
     {:ok, %HTTPoison.Response{body: body,

@@ -5,6 +5,7 @@ defmodule Selenium.Commands.Window do
 
   # Get all the window handles
   def all(identifier) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
@@ -15,6 +16,7 @@ defmodule Selenium.Commands.Window do
 
   # Get the current window handle
   def current(identifier) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
@@ -24,6 +26,7 @@ defmodule Selenium.Commands.Window do
 
   # Maximize the window
   def maximize(handle, identifier) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: _,
                               headers: _,
@@ -33,6 +36,7 @@ defmodule Selenium.Commands.Window do
 
   # Get the size of the window
   def get_size(handle, identifier) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
@@ -42,6 +46,7 @@ defmodule Selenium.Commands.Window do
 
   # Change the window dimensions
   def resize(handle, identifier, width, height) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: _,
                               headers: _,

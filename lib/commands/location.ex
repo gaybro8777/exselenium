@@ -5,6 +5,7 @@ defmodule Selenium.Commands.Location do
 
   # Get the current geo location
   def current(identifier) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
@@ -14,6 +15,7 @@ defmodule Selenium.Commands.Location do
 
   # Set the geo location
   def set(identifier, lat, long, alt) do
+    HTTPoison.start()
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
