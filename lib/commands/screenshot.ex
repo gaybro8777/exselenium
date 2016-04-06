@@ -18,7 +18,7 @@ defmodule Selenium.Commands.Screenshot do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/screenshot", [recv_timeout: :infinity])
+                              status_code: _}} = Request.get("session/#{session_id}/screenshot", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
     body
   end
 end

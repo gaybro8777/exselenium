@@ -19,7 +19,7 @@ defmodule Selenium.Commands.Cookie do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/cookie", [recv_timeout: :infinity])
+                              status_code: _}} = Request.get("session/#{session_id}/cookie", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
 
     # Map the cookie response to cookie structs
     Enum.map body["value"], fn(cookie) ->
@@ -52,7 +52,7 @@ defmodule Selenium.Commands.Cookie do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/cookie", %{"cookie" => cookie}, [recv_timeout: :infinity])
+                              status_code: _}} = Request.post("session/#{session_id}/cookie", %{"cookie" => cookie}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
     body
   end
 
@@ -62,7 +62,7 @@ defmodule Selenium.Commands.Cookie do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.delete("session/#{session_id}/cookie", [recv_timeout: :infinity])
+                              status_code: _}} = Request.delete("session/#{session_id}/cookie", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
     body
   end
 
@@ -72,7 +72,7 @@ defmodule Selenium.Commands.Cookie do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.delete("session/#{session_id}/cookie/#{name}", [recv_timeout: :infinity])
+                              status_code: _}} = Request.delete("session/#{session_id}/cookie/#{name}", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
     body["value"]
   end
 end

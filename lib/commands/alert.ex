@@ -8,7 +8,7 @@ defmodule Selenium.Commands.Alert do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/alert_text", [recv_timeout: :infinity])
+                              status_code: _}} = Request.get("session/#{session_id}/alert_text", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -17,7 +17,7 @@ defmodule Selenium.Commands.Alert do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/alert_text", %{ "text" => text}, [recv_timeout: :infinity])
+                              status_code: _}} = Request.post("session/#{session_id}/alert_text", %{ "text" => text}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
     body["state"] == "success"
   end
 
@@ -26,7 +26,7 @@ defmodule Selenium.Commands.Alert do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/accept_alert", "", [recv_timeout: :infinity])
+                              status_code: _}} = Request.post("session/#{session_id}/accept_alert", "", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
     body["state"] == "success"
   end
 
@@ -35,7 +35,7 @@ defmodule Selenium.Commands.Alert do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/dismiss_alert", "", [recv_timeout: :infinity])
+                              status_code: _}} = Request.post("session/#{session_id}/dismiss_alert", "", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
     body["state"] == "success"
   end
 

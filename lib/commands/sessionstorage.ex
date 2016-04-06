@@ -8,7 +8,7 @@ defmodule Selenium.Commands.SessionStorage do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/session_storage", [recv_timeout: :infinity])
+                              status_code: _}} = Request.get("session/#{session_id}/session_storage", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -17,7 +17,7 @@ defmodule Selenium.Commands.SessionStorage do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/session_storage/key/#{key}", [recv_timeout: :infinity])
+                              status_code: _}} = Request.get("session/#{session_id}/session_storage/key/#{key}", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -26,7 +26,7 @@ defmodule Selenium.Commands.SessionStorage do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.delete("session/#{session_id}/session_storage/key/#{key}", [recv_timeout: :infinity])
+                              status_code: _}} = Request.delete("session/#{session_id}/session_storage/key/#{key}", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -35,7 +35,7 @@ defmodule Selenium.Commands.SessionStorage do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/session_storage", %{ "key" => key, "value" => value }, [recv_timeout: :infinity])
+                              status_code: _}} = Request.post("session/#{session_id}/session_storage", %{ "key" => key, "value" => value }, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -44,7 +44,7 @@ defmodule Selenium.Commands.SessionStorage do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.delete("session/#{session_id}/session_storage", [recv_timeout: :infinity])
+                              status_code: _}} = Request.delete("session/#{session_id}/session_storage", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -53,7 +53,7 @@ defmodule Selenium.Commands.SessionStorage do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/session_storage/size", [recv_timeout: :infinity])
+                              status_code: _}} = Request.get("session/#{session_id}/session_storage/size", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
     body["value"]
   end
 end

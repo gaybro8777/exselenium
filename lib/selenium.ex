@@ -5,11 +5,12 @@ defmodule Selenium do
 
 		# Add the queue as a supervised process
 		children = [
-      worker(Selenium.Session, [[], [name: :session]])
+      worker(Selenium.Session, [[], [name: :session]]),
+      :hackney_pool.child_spec(:driver_pool,  [timeout: 15000, max_connections: 100])
     ]
 
     # Register a sytem exit function to cleanup
-    System.at_exit fn(status_code) ->
+    System.at_exit fn(_) ->
 
       # Close down all the sessions
       sessions = Selenium.Session.get_all()
