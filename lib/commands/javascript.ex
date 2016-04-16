@@ -17,7 +17,12 @@ defmodule Selenium.Commands.Javascript do
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
                               status_code: _}} = Request.post("session/#{session_id}/execute", %{"script" => function, "args" => args}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
-    body["value"]
+
+    # Body will return an error if this is bad, we don't want the massive payload that comes with it
+    case body["state"] do
+      "success" -> body["value"]
+      _ -> {:error, body["value"]}
+    end
   end
 
   # Executes javascript asyncronously, does not wait for return
