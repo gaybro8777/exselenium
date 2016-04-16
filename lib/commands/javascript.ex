@@ -16,7 +16,7 @@ defmodule Selenium.Commands.Javascript do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/execute", %{"script" => function, "args" => args}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/execute", %{"script" => function, "args" => args}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     # Body will return an error if this is bad, we don't want the massive payload that comes with it
     case body["state"] do
@@ -34,7 +34,7 @@ defmodule Selenium.Commands.Javascript do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/execute_async", %{"script" => function, "args" => args}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/execute_async", %{"script" => function, "args" => args}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -44,7 +44,7 @@ defmodule Selenium.Commands.Javascript do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/timeouts/async_script", %{"ms" => time}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/timeouts/async_script", %{"ms" => time}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body
   end
 end

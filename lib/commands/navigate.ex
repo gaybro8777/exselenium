@@ -8,7 +8,7 @@ defmodule Selenium.Commands.Navigate do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/url", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.get("session/#{session_id}/url", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -17,7 +17,7 @@ defmodule Selenium.Commands.Navigate do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/url", %{ "url" => url}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/url", %{ "url" => url}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -25,7 +25,7 @@ defmodule Selenium.Commands.Navigate do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/forward", "", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/forward", "", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -33,7 +33,7 @@ defmodule Selenium.Commands.Navigate do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/back", "", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/back", "", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -41,7 +41,7 @@ defmodule Selenium.Commands.Navigate do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/refresh", "", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/refresh", "", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 

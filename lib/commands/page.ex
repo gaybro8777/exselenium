@@ -8,7 +8,7 @@ defmodule Selenium.Commands.Page do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/source", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.get("session/#{session_id}/source", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -18,7 +18,7 @@ defmodule Selenium.Commands.Page do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/title", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.get("session/#{session_id}/title", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -28,7 +28,7 @@ defmodule Selenium.Commands.Page do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/orientation", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.get("session/#{session_id}/orientation", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -38,7 +38,7 @@ defmodule Selenium.Commands.Page do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/orientation", %{"orientation" => orientation}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/orientation", %{"orientation" => orientation}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 

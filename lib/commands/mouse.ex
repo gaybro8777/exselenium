@@ -11,7 +11,7 @@ defmodule Selenium.Commands.Mouse do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/moveto", %{"xoffset" => position.x, "yoffset" => position.y, "element" => element}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/moveto", %{"xoffset" => position.x, "yoffset" => position.y, "element" => element}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -23,7 +23,7 @@ defmodule Selenium.Commands.Mouse do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/click", %{"button" => @mouse_button[button]}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/click", %{"button" => @mouse_button[button]}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -33,7 +33,7 @@ defmodule Selenium.Commands.Mouse do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/buttondown", %{"button" => @mouse_button[button]}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/buttondown", %{"button" => @mouse_button[button]}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -43,7 +43,7 @@ defmodule Selenium.Commands.Mouse do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/buttonup", %{"button" => @mouse_button[button]}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/buttonup", %{"button" => @mouse_button[button]}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -53,7 +53,7 @@ defmodule Selenium.Commands.Mouse do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/doubleclick", %{"button" => @mouse_button[button]}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/doubleclick", %{"button" => @mouse_button[button]}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 end

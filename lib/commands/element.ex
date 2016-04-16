@@ -17,7 +17,7 @@ defmodule Selenium.Commands.Element do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/element", %{"using" => strat, "value" => selector}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/element", %{"using" => strat, "value" => selector}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     body["value"]["ELEMENT"]
   end
@@ -33,7 +33,7 @@ defmodule Selenium.Commands.Element do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/elements", %{"using" => strat, "value" => selector}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/elements", %{"using" => strat, "value" => selector}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     # Return a list of element IDs
     Enum.map body["value"], fn(element) ->
@@ -47,7 +47,7 @@ defmodule Selenium.Commands.Element do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/element/active", "", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/element/active", "", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     body["value"]["ELEMENT"]
   end
@@ -63,7 +63,7 @@ defmodule Selenium.Commands.Element do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/element/#{id}/element", %{"using" => strat, "value" => selector}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/element/#{id}/element", %{"using" => strat, "value" => selector}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     body["value"]["ELEMENT"]
   end
@@ -79,7 +79,7 @@ defmodule Selenium.Commands.Element do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/element/#{id}/elements", %{"using" => strat, "value" => selector}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/element/#{id}/elements", %{"using" => strat, "value" => selector}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     Enum.map body["value"], fn(element) ->
       element["ELEMENT"]
@@ -92,7 +92,7 @@ defmodule Selenium.Commands.Element do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/element/#{id}/click", "", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/element/#{id}/click", "", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     body["state"] == "success"
   end
@@ -103,7 +103,7 @@ defmodule Selenium.Commands.Element do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/element/#{id}/submit", "", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/element/#{id}/submit", "", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     body["state"] == "success"
   end
@@ -114,7 +114,7 @@ defmodule Selenium.Commands.Element do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/text", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/text", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     body["value"]
   end
@@ -125,7 +125,7 @@ defmodule Selenium.Commands.Element do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/attribute/#{attribute}", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/attribute/#{attribute}", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     body["value"]
   end
@@ -150,7 +150,7 @@ defmodule Selenium.Commands.Element do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/element/#{id}/value", %{ "value" => value}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/element/#{id}/value", %{ "value" => value}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     body["state"] == "success"
   end
@@ -164,7 +164,7 @@ defmodule Selenium.Commands.Element do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/keys", %{ "value" => value}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/keys", %{ "value" => value}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     body["state"] == "success"
   end
@@ -175,7 +175,7 @@ defmodule Selenium.Commands.Element do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/name", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/name", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     body["value"]
   end
@@ -186,7 +186,7 @@ defmodule Selenium.Commands.Element do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/element/#{id}/clear", "", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/element/#{id}/clear", "", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     body["state"] == "success"
   end
@@ -197,7 +197,7 @@ defmodule Selenium.Commands.Element do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/selected", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/selected", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     body["value"]
   end
@@ -208,7 +208,7 @@ defmodule Selenium.Commands.Element do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/enabled", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/enabled", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     body["value"]
   end
@@ -219,7 +219,7 @@ defmodule Selenium.Commands.Element do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/equals/#{other_id}", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/equals/#{other_id}", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     body["value"]
   end
@@ -230,7 +230,7 @@ defmodule Selenium.Commands.Element do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/displayed", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/displayed", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     body["value"]
   end
@@ -241,7 +241,7 @@ defmodule Selenium.Commands.Element do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/location", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/location", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     %Position{ x: body["value"]["x"], y: body["value"]["y"] }
   end
@@ -252,7 +252,7 @@ defmodule Selenium.Commands.Element do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/size", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/size", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     %{ "width" => body["value"]["width"], "height" => body["value"]["height"] }
   end
@@ -263,7 +263,7 @@ defmodule Selenium.Commands.Element do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/css/#{property}", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.get("session/#{session_id}/element/#{id}/css/#{property}", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     body["value"]
   end

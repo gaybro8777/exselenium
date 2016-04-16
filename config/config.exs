@@ -30,4 +30,5 @@ use Mix.Config
 #     import_config "#{Mix.env}.exs"
 config :selenium,
     hostname: "127.0.0.1",
-    port: "4444"
+    port: "4444",
+    timeout: :infinity

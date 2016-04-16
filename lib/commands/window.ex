@@ -8,7 +8,7 @@ defmodule Selenium.Commands.Window do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/window_handles", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.get("session/#{session_id}/window_handles", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     body["value"]
   end
@@ -18,7 +18,7 @@ defmodule Selenium.Commands.Window do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/window_handle", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.get("session/#{session_id}/window_handle", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -27,7 +27,7 @@ defmodule Selenium.Commands.Window do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: _,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/window/#{handle}/maximize", "", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/window/#{handle}/maximize", "", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     :ok
   end
 
@@ -36,7 +36,7 @@ defmodule Selenium.Commands.Window do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.get("session/#{session_id}/window/#{handle}/size", [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.get("session/#{session_id}/window/#{handle}/size", [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     %{ "width" => body["value"]["width"], "height" => body["value"]["height"] }
   end
 
@@ -45,7 +45,7 @@ defmodule Selenium.Commands.Window do
     session_id = Session.get(identifier)
     {:ok, %HTTPoison.Response{body: _,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/window/#{handle}/size", %{ "width" => width, "height" => height }, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/window/#{handle}/size", %{ "width" => width, "height" => height }, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
     :ok
   end

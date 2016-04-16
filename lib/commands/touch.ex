@@ -8,7 +8,7 @@ defmodule Selenium.Commands.Touch do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/touch/click", %{ "element" => element }, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/touch/click", %{ "element" => element }, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -18,7 +18,7 @@ defmodule Selenium.Commands.Touch do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/touch/down", %{"x" => position.x, "y" => position.y}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/touch/down", %{"x" => position.x, "y" => position.y}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -28,7 +28,7 @@ defmodule Selenium.Commands.Touch do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/touch/up", %{"x" => position.x, "y" => position.y}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/touch/up", %{"x" => position.x, "y" => position.y}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -38,7 +38,7 @@ defmodule Selenium.Commands.Touch do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/touch/move", %{"x" => position.x, "y" => position.y}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/touch/move", %{"x" => position.x, "y" => position.y}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -48,7 +48,7 @@ defmodule Selenium.Commands.Touch do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/touch/scroll", %{"xoffset" => position.x, "yoffset" => position.y, "element" => element}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/touch/scroll", %{"xoffset" => position.x, "yoffset" => position.y, "element" => element}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -58,7 +58,7 @@ defmodule Selenium.Commands.Touch do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/touch/move", %{"xoffset" => position.x, "yoffset" => position.y}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/touch/move", %{"xoffset" => position.x, "yoffset" => position.y}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -68,7 +68,7 @@ defmodule Selenium.Commands.Touch do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/touch/doubleclick", %{"element" => element}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/touch/doubleclick", %{"element" => element}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -78,7 +78,7 @@ defmodule Selenium.Commands.Touch do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/touch/longclick", %{"element" => element}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/touch/longclick", %{"element" => element}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -89,7 +89,7 @@ defmodule Selenium.Commands.Touch do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/touch/flick", %{"element" => element, "speed" => speed, "xoffset" => position.x, "yoffset" => position.y}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/touch/flick", %{"element" => element, "speed" => speed, "xoffset" => position.x, "yoffset" => position.y}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 
@@ -99,7 +99,7 @@ defmodule Selenium.Commands.Touch do
 
     {:ok, %HTTPoison.Response{body: body,
                               headers: _,
-                              status_code: _}} = Request.post("session/#{session_id}/touch/flick", %{"xspeed" => xspeed, "yspeed" => yspeed}, [], [recv_timeout: :infinity, hackney: [pool: :driver_pool]])
+                              status_code: _}} = Request.post("session/#{session_id}/touch/flick", %{"xspeed" => xspeed, "yspeed" => yspeed}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
     body["value"]
   end
 end
