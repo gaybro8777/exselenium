@@ -4,8 +4,10 @@ defmodule Selenium.Mixfile do
   def project do
     [app: :selenium,
      version: "0.0.1",
-     elixir: "~> 1.1",
+     elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
+     description: "Elixir wrapper for selenium webdriver protocol",
+     package: package,
      start_permanent: Mix.env == :prod,
      deps: deps]
   end
@@ -33,6 +35,14 @@ defmodule Selenium.Mixfile do
     [
       {:httpoison, "~> 0.8.0"},
       {:poison, "~> 2.0.1"}
+    ]
+  end
+
+  defp package do
+    [
+      maintainers: ["Nathan Johnson"],
+      licenses: ["BSD"],
+      links: %{"GitHub" => "https://github.com/nathanjohnson320/exselenium"}
     ]
   end
 end
