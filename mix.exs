@@ -37,7 +37,8 @@ defmodule Selenium.Mixfile do
       {:poison, "~> 2.0.1"},
 			{:cowboy, "~> 1.0.0", only: :test},
 			{:plug, "~> 1.0", only: :test},
-			{:plug_basic_auth, "~> 1.1", only: :test}
+			{:plug_basic_auth, "~> 1.1", only: :test},
+			{:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
 
