@@ -1,5 +1,5 @@
 defmodule CookieTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   alias Selenium.Session
   alias Selenium.Commands.Navigate
@@ -7,14 +7,27 @@ defmodule CookieTest do
 
   doctest Cookie
 
+	setup_all do
+
+		IO.puts "Booting test server"
+		Plug.Adapters.Cowboy.http(TestServer, %{})
+
+		# No metadata
+		:ok
+	end
+
   test "getting all the cookies" do
     session_name = "cookie all"
 
     # Create a new session
     Session.create(session_name, "firefox")
 
-    # Go to facebook
-    Navigate.to(session_name, "https://www.facebook.com")
+    # Go to local site
+    Navigate.to(session_name, "http://localhost:4000")
+
+		# Set the test cookie
+		Cookie.set(session_name, %Cookie{name: "test", value: "cookiemonster"})
+		Cookie.set(session_name, %Cookie{name: "testcookie", value: "cookiemonster"})
 
     # Grab all the cookies
     cookies = Cookie.all(session_name)
@@ -22,8 +35,8 @@ defmodule CookieTest do
     # Close the window
     Session.destroy(session_name)
 
-    # There should be at least 3 cookies -- not the best test
-    assert length(cookies) > 2
+    # There should be two cookies
+    assert length(cookies) == 2
 
     # Each of the cookies should be a cookie struct
     Enum.each cookies, fn(cookie) ->
@@ -38,11 +51,14 @@ defmodule CookieTest do
     # Create a new session
     Session.create(session_name, "firefox")
 
-    # Go to facebook
-    Navigate.to(session_name, "https://www.facebook.com")
+    # Go to test site
+    Navigate.to(session_name, "http://localhost:4000")
+
+		# Set the test cookie
+		Cookie.set(session_name, %Cookie{name: "testcookie", value: "cookiemonster"}) 
 
     # Grab a single cookie
-    good_cookie = Cookie.get(session_name, "_js_datr")
+    good_cookie = Cookie.get(session_name, "testcookie")
     bad_cookie = Cookie.get(session_name, "does not exist")
 
     # Close the window
@@ -61,7 +77,7 @@ defmodule CookieTest do
     Session.create(session_name, "firefox")
 
     # Go to facebook
-    Navigate.to(session_name, "https://www.facebook.com")
+    Navigate.to(session_name, "http://localhost:4000")
 
     # Create a new cookie
     cookie = %Cookie{name: "selenium", value: "is the best"}
@@ -85,8 +101,11 @@ defmodule CookieTest do
     # Create a new session
     Session.create(session_name, "firefox")
 
-    # Go to facebook
-    Navigate.to(session_name, "https://www.facebook.com")
+    # Go to site
+    Navigate.to(session_name, "http://localhost:4000")
+
+    # Create a new cookie
+    %Cookie{name: "selenium", value: "is the best"}
 
     # Delete All the cookies
     Cookie.delete_all(session_name)
@@ -107,8 +126,8 @@ defmodule CookieTest do
     # Create a new session
     Session.create(session_name, "firefox")
 
-    # Go to facebook
-    Navigate.to(session_name, "https://www.facebook.com")
+    # Go to site
+    Navigate.to(session_name, "http://localhost:4000")
 
     # Create a new cookie
     cookie = %Cookie{name: "selenium", value: "is the best"}

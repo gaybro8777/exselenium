@@ -34,7 +34,10 @@ defmodule Selenium.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.8.0"},
-      {:poison, "~> 2.0.1"}
+      {:poison, "~> 2.0.1"},
+			{:cowboy, "~> 1.0.0", only: :test},
+			{:plug, "~> 1.0", only: :test},
+			{:plug_basic_auth, "~> 1.1", only: :test}
     ]
   end
 

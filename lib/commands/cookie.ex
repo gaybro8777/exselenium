@@ -37,10 +37,7 @@ defmodule Selenium.Commands.Cookie do
   # Get a single cookie
   def get(identifier, name) do
     # Get all the cookies first, then filter them down by name
-    case all(identifier) |> Enum.filter(fn(cookie) -> cookie.name == name end) do
-      [cookie] -> cookie
-      _ -> nil
-    end
+    all(identifier) |> Enum.find(fn(cookie) -> cookie.name == name end)
   end
 
   # Set a cookie to a value, use %Cookie{} for this
