@@ -3,6 +3,8 @@ defmodule Selenium.Request do
   # Module to handle HTTP requests in a uniform fashion
   use HTTPoison.Base
 
+  @url Application.get_env(:selenium, :url)
+
   # prepend the url with the server api route
   def process_url(url) do
     api_url <> url
@@ -35,12 +37,7 @@ defmodule Selenium.Request do
 
   # API url helper - will work in any env
   defp api_url do
-
-    # Grab our config variables for selenium host and port
-    host = Application.get_env(:selenium, :hostname)
-    port = Application.get_env(:selenium, :port)
-
     # Selenium path is wd/hub
-    "http://#{host}:#{port}/wd/hub/"
+    @url <> "/wd/hub/"
   end
 end
