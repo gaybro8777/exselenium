@@ -7,9 +7,9 @@ defmodule Selenium.Mixfile do
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      description: "Elixir wrapper for selenium webdriver protocol",
-     package: package,
+     package: package(),
      start_permanent: Mix.env == :prod,
-     deps: deps]
+     deps: deps()]
   end
 
   # Configuration for the OTP application
@@ -33,12 +33,12 @@ defmodule Selenium.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:httpoison, "~> 0.8.0"},
-      {:poison, "~> 2.0.1"},
-	  {:cowboy, "~> 1.0.0", only: :test},
-	  {:plug, "~> 1.0", only: :test},
-	  {:plug_basic_auth, "~> 1.1", only: :test},
-	  {:ex_doc, ">= 0.0.0", only: :dev}
+      {:httpoison, "~> 0.11"},
+      {:poison, "~> 3.1"},
+      {:cowboy, "~> 1.0.0", only: :test},
+      {:plug, "~> 1.0", only: :test},
+      {:plug_basic_auth, "~> 1.1", only: :test},
+      {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
 

@@ -7,7 +7,7 @@ defmodule Selenium.Request do
 
   # prepend the url with the server api route
   def process_url(url) do
-    api_url <> url
+    api_url() <> url
   end
 
   # Response body should always be decoded, unless it can't then
