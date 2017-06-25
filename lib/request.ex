@@ -31,9 +31,9 @@ defmodule Selenium.Request do
   end
 
   # Set the headers to JSON
-  def process_request_headers(headers) do
-    [{'content-type', 'application/json'} | headers]
-  end
+  # def process_request_headers(headers) do
+  #   [{'content-type', 'application/json'} | headers]
+  # end
 
   # API url helper - will work in any env
   defp api_url do
