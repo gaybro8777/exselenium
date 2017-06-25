@@ -3,7 +3,7 @@ defmodule Selenium.Mixfile do
 
   def project do
     [app: :selenium,
-     version: "0.1.0",
+     version: "1.0.0",
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      description: "Elixir wrapper for selenium webdriver protocol",
