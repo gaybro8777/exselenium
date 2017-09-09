@@ -19,7 +19,10 @@ defmodule Selenium.Commands.Element do
                               headers: _,
                               status_code: _}} = Request.post("session/#{session_id}/element", %{"using" => strat, "value" => selector}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
-    body["value"]["ELEMENT"]
+    case body["value"]["ELEMENT"] do
+      nil -> {:error, :notfound}
+      element -> {:ok, element}
+    end
   end
 
   # Find all elements with selector
