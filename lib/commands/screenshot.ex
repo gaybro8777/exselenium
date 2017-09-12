@@ -5,7 +5,7 @@ defmodule Selenium.Commands.Screenshot do
 
   # Save the screenshot to a file given by path
   def save(identifier, path) do
-    %{ "class" => _, "hCode" => _, "sessionId" => _, "state" => _, "status" => _, "value" => png} = take(identifier)
+    %{ "sessionId" => _sessionId, "status" => _status, "value" => png} = take(identifier)
 
     # Decode the base64 string
     {:ok, png} = Base.decode64(png)
