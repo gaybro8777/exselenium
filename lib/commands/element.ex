@@ -155,7 +155,7 @@ defmodule Selenium.Commands.Element do
                               headers: _,
                               status_code: _}} = Request.post("session/#{session_id}/element/#{id}/value", %{ "value" => value}, [], [recv_timeout: Application.get_env(:selenium, :timeout), hackney: [pool: :driver_pool]])
 
-    body["state"] == "success"
+    body
   end
 
   # Trigger key presses in the active element
